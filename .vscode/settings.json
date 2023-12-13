@@ -1,5 +1,12 @@
 {
     "files.associations": {
         "libft.h": "c"
-    }
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/bgrosjea/Desktop/workspace/PS",
+            "binaryPath": "/home/bgrosjea/Desktop/workspace/PS/push_swap",
+            "binaryArgs": []
+        }
+    ]
 }

@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:31:02 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/12 19:34:39 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:30:53 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-typedef struct s_list
+typedef struct Node
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+	int				nbr;
+	struct Node		*next;
+}	t_Node;
 
-int		ft_lstsize(t_list *lst);
+int		ft_lstsize(t_Node *lst);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -46,11 +46,11 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-void	ft_lstiter(t_list *list, void (*f)(void *));
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_Node *list, void (*f)(int));
+void	ft_lstadd_back(t_Node **lst, t_Node *new);
+void	ft_lstadd_front(t_Node **lst, t_Node *new);
+void	ft_lstdelone(t_Node *lst);
+void	ft_lstclear(t_Node **lst);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -69,9 +69,9 @@ char	*ft_uitoa(unsigned int n);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-t_list	*ft_lstnew(void *content);
-t_list	*ft_lstlast(t_list *lst);
+t_Node	*ft_lstmap(t_Node *lst, int (*f)(int), void (*del)(int));
+t_Node	*ft_lstnew(int number);
+t_Node	*ft_lstlast(t_Node *lst);
 int		ft_printf(const char *str, ...);
 int		ft_printnbr(int n);
 int		ft_prints(char *s);
@@ -80,7 +80,6 @@ int		ft_printhexlow(unsigned int n);
 int		ft_printhexup(unsigned int n);
 int		ft_printchar(int c);
 int		ft_printunbr(unsigned int n);
-char	*ft_itoa_baseprintf(unsigned int n, int low_or_up);
 
 typedef struct s_marche{
 	int		j;

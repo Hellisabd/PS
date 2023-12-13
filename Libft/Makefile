@@ -40,13 +40,8 @@ SRCS		=	ft_isalpha.c	\
 			ft_itoa_base_uintptr_t.c \
 			ft_printf.c	\
 			ft_printnbr.c	\
-		  	ft_prints.c		
-
-
-
-OBJS		=	$(SRCS:.c=.o)
-
-BONUS		=	ft_lstnew.c		\
+		  	ft_prints.c		\
+			ft_lstnew.c		\
 			ft_lstadd_front.c	\
 			ft_lstsize.c		\
 			ft_lstlast.c		\
@@ -56,11 +51,13 @@ BONUS		=	ft_lstnew.c		\
 			ft_lstiter.c		\
 			ft_lstmap.c		
 
-BONUS_OBJS	=	$(BONUS:.c=.o)
+
+
+OBJS		=	$(SRCS:.c=.o)
 
 CC		=	gcc
 
-CFLAGS		+= 	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS		+= 	-Wall -Wextra -Werror -g3
 
 RM		=	rm -f
 
@@ -68,16 +65,14 @@ all		:
 			@make $(NAME)
 
 $(NAME)		:	$(OBJS)
-			ar -crs $(NAME) $(OBJS)
+			@ar -crs $(NAME) $(OBJS)
 clean		:	
-			$(RM) $(OBJS)
+			@$(RM) $(OBJS)
 
 fclean		:	
-			$(RM) $(NAME) $(OBJS)
+			@$(RM) $(NAME) $(OBJS)
 
 re		:	fclean all
 
 ex		:	fclean all clean
 
-bonus		:	$(OBJS) $(BONUS_OBJS)
-			ar -crs $(NAME) $(OBJS) $(BONUS_OBJS)

@@ -6,14 +6,33 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:41:18 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/12 19:54:48 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:05:04 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-void    sa(struct a)
 
-void    ra(struct a)
-void    pa(struct a)
-void    rra(struct a)
+// void    sb(t_Node b)
+// {
+    
+// }
+
+// void    rb(t_Node b)
+// {
+    
+// }
+// 
+void    pb(t_Node *b, t_Node **a)
+{
+	t_Node	*tmp;
+
+	tmp = *a;
+	*a = (*a)->next;
+	ft_lstadd_front(&b, tmp);
+}
+
+// void    rrb(t_Node b)
+// {
+    
+// }

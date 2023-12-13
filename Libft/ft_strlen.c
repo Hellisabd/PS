@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 13:17:35 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/12 19:34:38 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:13:47 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlen(const char *s)
 
 	i = 0;
 	if (!s)
-        return (0);
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);

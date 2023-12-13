@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:17:02 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/12 19:34:38 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:37:15 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_printhexlow(unsigned int n)
 	char	*res;
 	int		printed;
 
-	res = ft_itoa_baseprintf(n, 0);
+	res = ft_itoa_base(n, 0);
 	if (ft_prints(res) == -1)
 		return (-1);
 	printed = (int)ft_strlen(res);
@@ -56,7 +56,7 @@ int	ft_printhexup(unsigned int n)
 	char	*res;
 	int		printed;
 
-	res = ft_itoa_baseprintf(n, 1);
+	res = ft_itoa_base(n, 1);
 	if (ft_prints(res) == -1)
 		return (-1);
 	printed = (int)ft_strlen(res);

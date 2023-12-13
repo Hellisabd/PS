@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:07:54 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/11/02 16:43:04 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:02:09 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_Node	*ft_lstlast(t_Node *lst)
 {
-	t_list	*tmp;
+	t_Node	*tmp;
 
 	if (!lst)
 		return (NULL);

@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:11:56 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/11/02 17:30:38 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:59:46 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(t_Node **lst)
 {
-	t_list	*tmp;
+	t_Node	*tmp;
 
-	if (!lst || !del)
+	if (!lst)
 		return ;
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
+		ft_lstdelone(*lst);
 		(*lst) = tmp;
 	}
 }
