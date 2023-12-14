@@ -6,13 +6,13 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:41:18 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/13 19:18:21 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:53:53 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-void    sa(t_Node *a)//ok
+void    sa(t_Node *a, int boul)//ok
 {
 	int	tmp;
 	if (a && a->next)
@@ -21,9 +21,11 @@ void    sa(t_Node *a)//ok
 		a->next->nbr = a->nbr;
 		a->nbr = tmp;
 	}
+	if (boul)
+		ft_printf("sa\n");
 }
 
-void    ra(t_Node **a) //ok
+void    ra(t_Node **a, int boul) //ok
 {
 	t_Node	*tmp;
 	
@@ -32,10 +34,12 @@ void    ra(t_Node **a) //ok
 		tmp = *a;
 		*a = (*a)->next;
 		ft_lstadd_back(a, tmp);
+		if (boul)
+			ft_printf("ra\n");
 	}
 }
 
-void    pa(t_Node *a, t_Node **b)
+void    pa(t_Node **a, t_Node **b) //ok
 {
 	t_Node	*tmp;
 
@@ -43,10 +47,11 @@ void    pa(t_Node *a, t_Node **b)
 		return ;
 	tmp = *b;
 	*b = (*b)->next;
-	ft_lstadd_front(&a, tmp);
+	ft_lstadd_front(a, tmp);
+	ft_printf("pa\n");
 }
 
-void    rra(t_Node **a)
+void    rra(t_Node **a, int boul) //ok
 {
 	t_Node	*current;
 	t_Node	*secondlast;
@@ -56,7 +61,7 @@ void    rra(t_Node **a)
 	current = *a;
 	if (a && *a && (*a)->next)
 	{
-		while (current->next)
+		while (current)
 		{
 			secondlast = last;
 			last = current;
@@ -64,7 +69,9 @@ void    rra(t_Node **a)
 		}
 		if (secondlast)
 			secondlast->next = NULL;
-		current->next = *a;
-		*a = current;
+		last->next = *a;
+		*a = last;
 	}
+	if (boul)
+		ft_printf("rra\n");
 }

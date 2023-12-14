@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:53:11 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/13 18:56:47 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:10:45 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,46 +25,70 @@ void	ft_print_stack(t_Node *a)
 		a = tmp;
 	}
 }
+int	ft_fill_Node(t_Node **a, char **argv, int i)
+{
+	ssize_t		number;
+	t_Node	*new;
+
+	number = ft_atoi(argv[i]);
+	if (number > INT_MAX || number < INT_MIN)
+	{
+		ft_printf("ERROR : int overflowed");
+	}
+	new = ft_lstnew(number);
+	if (!new)
+	{
+		ft_lstclear(a);
+		exit (EXIT_FAILURE);
+	}
+	ft_lstadd_back(a, new);
+	return (i + 1);
+}
 
 t_Node	*ft_fill_a(t_Node *a, int argc, char **argv)
 {
-	t_Node	*new;
-	int		number;
 	int		i;
+	char	**tmp;
+	int		j;
+	int		words;
 	
 	a = NULL;
 	i = 1;
 	while (argc > i)
 	{
-		number = ft_atoi(argv[i]);
-		new = ft_lstnew(number);
-		if (!new)
+		words = count_words(argv[i], ' ');
+		if (1 == words)
 		{
-			ft_lstclear(&a);
-			exit (EXIT_FAILURE);
+			i = ft_fill_Node(&a, argv, i);
 		}
-		ft_lstadd_back(&a, new);
-		i++;
+		else
+		{
+			j = 0;
+			tmp = ft_split(argv[i], ' ');
+			while (j < words)
+				j = ft_fill_Node(&a, tmp, j);
+			i++;
+		}
 	}
+	ft_free_double_tab(tmp);
 	return (a);
 }
 
 int main(void)
 {
 	t_Node  *a;
-	char *argv[8] = {"a.out", "1", "2", "3", "4", "5", "6"};
+	char *argv[6] = {"a.out", "  1111 535648 8 7 10  4", "2", "1", "2"};
 	int		argc;
+	int		size;
 
-	argc = 7;
-	t_Node	*b;
-	
-
+	argc = 4;
+	size = 0;
 	a = NULL;
-	b = NULL;
 	ft_error(argc, argv);
+	ft_check(argc, argv);
 	a = ft_fill_a(a, argc, argv);
-	pb(b, &a);
-	pa(a, &b);
+	size = ft_check_same(&a, size);
+	ft_sort(&a, argc);
 	ft_print_stack(a);
 	return (0);
 }

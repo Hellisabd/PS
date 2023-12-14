@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:31:02 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/13 16:30:53 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:03:32 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdint.h>
 # include <stdarg.h>
 # include <stdint.h>
+# include <limits.h>
 
 typedef struct Node
 {
@@ -46,6 +47,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void    ft_free_double_tab(char **tab);
 void	ft_lstiter(t_Node *list, void (*f)(int));
 void	ft_lstadd_back(t_Node **lst, t_Node *new);
 void	ft_lstadd_front(t_Node **lst, t_Node *new);
@@ -67,6 +69,7 @@ char	*ft_itoa_base_uintptr_t(uintptr_t n);
 char	*ft_itoa_base(int n, int low_or_up);
 char	*ft_uitoa(unsigned int n);
 size_t	ft_strlen(const char *s);
+size_t	count_words(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 t_Node	*ft_lstmap(t_Node *lst, int (*f)(int), void (*del)(int));

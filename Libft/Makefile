@@ -49,28 +49,29 @@ SRCS		=	ft_isalpha.c	\
 			ft_lstdelone.c		\
 			ft_lstclear.c		\
 			ft_lstiter.c		\
-			ft_lstmap.c		
+			ft_lstmap.c		\
+			ft_free_double_tab.c 
 
 
 
 OBJS		=	$(SRCS:.c=.o)
 
-CC		=	gcc
+CC		=	@gcc
 
 CFLAGS		+= 	-Wall -Wextra -Werror -g3
 
 RM		=	rm -f
 
 all		:	
-			@make $(NAME)
+	@make --no-print-directory $(NAME)
 
 $(NAME)		:	$(OBJS)
-			@ar -crs $(NAME) $(OBJS)
+	@ar -crs $(NAME) $(OBJS)
 clean		:	
-			@$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean		:	
-			@$(RM) $(NAME) $(OBJS)
+	@$(RM) $(NAME) $(OBJS)
 
 re		:	fclean all
 
