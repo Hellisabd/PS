@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:53:11 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/14 20:10:45 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:53:50 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_Node	*ft_fill_a(t_Node *a, int argc, char **argv)
 	
 	a = NULL;
 	i = 1;
+	tmp = NULL;
 	while (argc > i)
 	{
 		words = count_words(argv[i], ' ');
@@ -74,14 +75,14 @@ t_Node	*ft_fill_a(t_Node *a, int argc, char **argv)
 	return (a);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
 	t_Node  *a;
-	char *argv[6] = {"a.out", "  1111 535648 8 7 10  4", "2", "1", "2"};
-	int		argc;
+	// char *argv[14] = {"a.out", "110","9","168","7","16","5","1114","3","2","1","10","-1"};
+	//  int		argc;
 	int		size;
 
-	argc = 4;
+	//  argc = 13;
 	size = 0;
 	a = NULL;
 	ft_error(argc, argv);

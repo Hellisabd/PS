@@ -6,48 +6,49 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/14 20:06:14 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:00:12 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	ft_get_Ntop(int N_to_p, t_Node **a, int argc)
+int	ft_get_Ntop(int N_to_p, t_Node *a, int argc)
 {
 	int	i;
 
 	i = 0;
-	while (N_to_p != (*a)->nbr)
+	while (N_to_p != a->nbr)
 	{
-		if (N_to_p == (*a)->nbr)
-		{
-			if (i < argc / 2)
-				return (i * (-1));
-			else
-				return (i);
-		}
-		*a = (*a)->next;
+		a = a->next;
 		i++;
 	}
-	return (0);
+	if (N_to_p == a->nbr)
+	{
+		if (i > argc / 2)
+			return (i - argc + 1);
+		else
+			return (i);
+	}
+	return (i);
 }
 
-int	ft_getmax(t_Node **a)
+int	ft_getmin(t_Node **a)
 {
-	int		max;
+	int		min;
 	t_Node	*tmp;
 
 	tmp = *a;
+	min = INT_MAX;
 	while (tmp)
 	{
-		if (max < tmp->nbr)
-			max = tmp->nbr;
+		if (min > tmp->nbr)
+			min = tmp->nbr;
 		tmp = tmp->next;
 	}
-	return (max);
+	return (min);
 }
 
-void	ft_sort(t_Node **a, int size)
+void	ft_sort(t_Node **a, int argc)
 {
 	t_Node	*b;
 	int		N_to_p;
@@ -55,10 +56,13 @@ void	ft_sort(t_Node **a, int size)
 	b = NULL;
 	while (*a)
 	{
-		N_to_p = ft_getmax(a);
-		N_to_p = ft_get_Ntop(N_to_p, a, size);
-		while (N_to_p != 0)
+		argc = argc / 6;
+		while (argc > 0)
 		{
+		N_to_p = ft_getmin(a);
+		N_to_p = ft_get_Ntop(N_to_p, *a, argc);
+			while (N_to_p != 0)
+			{
 			if (N_to_p < 0)
 			{
 				rra(a, 1);
@@ -69,8 +73,10 @@ void	ft_sort(t_Node **a, int size)
 				ra(a, 1);
 				N_to_p--;
 			}
-		}
+			}
 		pb(&b, a);
+		argc--;
+		}
 	}
 	while (b)
 		pa(a, &b);

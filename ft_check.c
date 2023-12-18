@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:40:27 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/14 20:05:11 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:25:27 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,31 @@
 void    ft_check(int argc, char **argv)
 {
 	int i;
+	int	j;
 
-	i = 0;
-	while (--argc > 0)
+	j = 1;
+	while (argc > j)
 	{
 		i = 0;
-		while (argv[argc][i] != '\0')
+		while (argv[j][i] != '\0')
 		{
-			if(0 == ft_isdigit(argv[argc][i]) && argv[argc][i] != ' ')
+			if (0 == ft_isdigit(argv[j][i]) && (argv[j][i] != ' ' && argv[j][i] != '-'))
 			{
-				ft_printf("found \"%c\" Error\n", argv[argc][i]);
+				ft_printf("found \"%c\" Error\n", argv[j][i]);
 				exit(EXIT_FAILURE);
 			}
 			i++;
 		}
+		j++;
 	}
 }
 
-int	ft_check_same(t_Node *a)
+int	ft_check_same(t_Node **a, int size)
 {
 	t_Node	*tmp;
 	t_Node	*cmp;
-	int		size;
 	
-	cmp = a;
+	cmp = (*a);
 	size = 0;
 	while (cmp)
 	{
