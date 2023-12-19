@@ -6,11 +6,62 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:40:27 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/18 12:25:27 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:58:59 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
+
+int	find_min(t_Node *find_target)
+{
+	int i;
+	int	c;
+	int	nbr;
+
+	i = 0;
+	nbr = INT_MAX;
+	while (find_target)
+	{
+		if (find_target->nbr < nbr)
+		{
+			nbr = find_target->nbr;
+			c = i;
+		}
+		find_target = find_target->next;
+		i++;
+	}
+	return (c);
+}
+
+void	get_right_pos_utils(t_stock *costs, t_Node **src, t_Node **dest)
+{
+	if (costs->cost <= 0 && costs->cost2 >= 0)
+	{
+		while (costs->cost != 0)
+		{
+			rra(src, 1);
+			costs->cost++;
+		}
+		while (costs->cost2 != 0)
+		{
+			rb(dest, 1);
+			costs->cost2--;
+		}
+	}
+	else
+	{
+		while (costs->cost != 0)
+		{
+			ra(src, 1);
+			costs->cost--;
+		}
+		while (costs->cost2 != 0)
+		{
+			rrb(dest, 1);
+			costs->cost2++;
+		}
+	}
+}
 
 void    ft_check(int argc, char **argv)
 {
@@ -57,4 +108,28 @@ int	ft_check_same(t_Node **a, int size)
 		cmp = cmp->next;
 	}
 	return (size);
+}
+
+int	ft_check_cost_diff(int cost, int cost2)
+{
+	if ((cost < 0 && cost2 < 0) || (cost > 0 && cost2 > 0))
+	{
+		if (cost < 0 && cost2 < 0)
+		{
+			if (cost > cost2)
+				return (cost2);
+			else
+				return(cost);
+		}
+		else
+			if (cost > cost2)
+				return (cost);
+			else
+				return(cost2);
+	}
+	else if (cost > cost2 || cost < 0)
+		return (cost - cost2);
+	else
+		return(cost2 - cost);
+	return (0);
 }

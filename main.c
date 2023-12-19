@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:53:11 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/18 13:53:50 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:07:39 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,23 @@ t_Node	*ft_fill_a(t_Node *a, int argc, char **argv)
 	return (a);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
 	t_Node  *a;
-	// char *argv[14] = {"a.out", "110","9","168","7","16","5","1114","3","2","1","10","-1"};
-	//  int		argc;
+	char *argv[3] = {"a.out","45 25 450 250 47 321 4257 41 4587 4 5 8 97 1 4521 35 78945 32164 848"};
+	int		argc;
 	int		size;
 
-	//  argc = 13;
+	argc = 2;
 	size = 0;
 	a = NULL;
 	ft_error(argc, argv);
 	ft_check(argc, argv);
 	a = ft_fill_a(a, argc, argv);
 	size = ft_check_same(&a, size);
-	ft_sort(&a, argc);
+	if (a_is_sorted(a))
+		return (0);
+	ft_sort(&a, size);
 	ft_print_stack(a);
 	return (0);
 }

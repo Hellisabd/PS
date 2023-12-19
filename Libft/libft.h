@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:31:02 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/14 16:03:32 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:16:45 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <limits.h>
+# include <stdbool.h>
 
 typedef struct Node
 {
 	int				nbr;
 	struct Node		*next;
+	struct Node		*target;
+	int				cost;
+	int				cost2;
+	int				costoverall;
 }	t_Node;
 
 int		ft_lstsize(t_Node *lst);
