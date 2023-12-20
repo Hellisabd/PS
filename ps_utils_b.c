@@ -6,24 +6,27 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:41:18 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/14 15:21:15 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:41:33 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
 
-void    sb(t_Node *b, int boul)//ok
+void    sb(t_Node **b, int boul)//ok
 {
-	int	tmp;
-	if (b && b->next)
+	t_Node	*tmp;
+	
+	tmp = *b;
+	if (*b && (*b)->next)
 	{
-		tmp = b->next->nbr;
-		b->next->nbr = b->nbr;
-		b->nbr = tmp;
-		if (boul)
-			ft_printf("sb\n");
+		*b = (*b)->next;
+		(*b)->next = tmp;
+		tmp->next = (*b)->next;
+		(*b)->next = tmp;
 	}
+	if (boul)
+		ft_printf("sb\n");
 }
 void    rb(t_Node **b, int boul) //ok
 {
@@ -73,4 +76,14 @@ void    rrb(t_Node **b, int boul) //ok
 		if (boul)
 			ft_printf("rrb\n");
 	}
+}
+
+int		ft_find_div(int max)
+{
+	int i;
+
+	i = max / 100 * 15;
+	if (i == 0)
+		return (5);
+	return (i);
 }

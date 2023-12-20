@@ -6,20 +6,22 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:41:18 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/14 19:53:53 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:26:27 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-void    sa(t_Node *a, int boul)//ok
+void    sa(t_Node **a, int boul)//ok
 {
-	int	tmp;
-	if (a && a->next)
+	t_Node	*tmp;
+	
+	tmp = *a;
+	if (*a && (*a)->next)
 	{
-		tmp = a->next->nbr;
-		a->next->nbr = a->nbr;
-		a->nbr = tmp;
+		*a = (*a)->next;
+		tmp->next = (*a)->next;
+		(*a)->next = tmp;
 	}
 	if (boul)
 		ft_printf("sa\n");

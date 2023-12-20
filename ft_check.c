@@ -6,60 +6,40 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:40:27 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/19 16:58:59 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:54:15 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	find_min(t_Node *find_target)
+int	ft_find_best_rank(t_Node **a, t_Node **b)
 {
-	int i;
-	int	c;
-	int	nbr;
+	t_Node	*current_a;
+	int		best_rank;
 
-	i = 0;
-	nbr = INT_MAX;
-	while (find_target)
+	current_a = *a;
+	best_rank = find_max_rank_a(*a);
+	while (current_a && *b)
 	{
-		if (find_target->nbr < nbr)
-		{
-			nbr = find_target->nbr;
-			c = i;
-		}
-		find_target = find_target->next;
-		i++;
+		if ((current_a->rank > (*b)->rank) && (best_rank > current_a->rank))
+			best_rank = current_a->rank;
+		current_a = current_a->next;
 	}
-	return (c);
+	return (best_rank);
 }
-
-void	get_right_pos_utils(t_stock *costs, t_Node **src, t_Node **dest)
+void	ft_final_sort(t_Node **a, t_Node **b)
 {
-	if (costs->cost <= 0 && costs->cost2 >= 0)
+	int		best_rank;
+
+	if (!(*b) || !b)
+		return ;
+	best_rank = ft_find_best_rank(a, b);
+	while ((*a)->rank != best_rank && *b)
 	{
-		while (costs->cost != 0)
-		{
-			rra(src, 1);
-			costs->cost++;
-		}
-		while (costs->cost2 != 0)
-		{
-			rb(dest, 1);
-			costs->cost2--;
-		}
-	}
-	else
-	{
-		while (costs->cost != 0)
-		{
-			ra(src, 1);
-			costs->cost--;
-		}
-		while (costs->cost2 != 0)
-		{
-			rrb(dest, 1);
-			costs->cost2++;
-		}
+		if (find_r_or_rr(a, best_rank))
+			ra(a, 1);
+		else
+			rra(a, 1);
 	}
 }
 
@@ -110,26 +90,19 @@ int	ft_check_same(t_Node **a, int size)
 	return (size);
 }
 
-int	ft_check_cost_diff(int cost, int cost2)
+bool	find_r_or_rr(t_Node **a, int best_rank)
 {
-	if ((cost < 0 && cost2 < 0) || (cost > 0 && cost2 > 0))
+	int 	cost;
+	t_Node	*tmp;
+
+	cost = 0;
+	tmp = *a;
+	while (tmp->rank != best_rank && tmp && tmp->next)
 	{
-		if (cost < 0 && cost2 < 0)
-		{
-			if (cost > cost2)
-				return (cost2);
-			else
-				return(cost);
-		}
-		else
-			if (cost > cost2)
-				return (cost);
-			else
-				return(cost2);
+		cost++;
+		tmp = tmp->next;
 	}
-	else if (cost > cost2 || cost < 0)
-		return (cost - cost2);
-	else
-		return(cost2 - cost);
-	return (0);
+	if (cost > count_size_a(*a) / 2)
+		return (false);
+	return (true);
 }

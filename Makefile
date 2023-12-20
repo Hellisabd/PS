@@ -17,9 +17,7 @@ SRCS	= main.c \
 		ps_utils_both.c	\
 		ft_check.c	\
 		ft_sort.c	\
-		ft_get_node.c	\
-		ft_sort_three.c	\
-		get_lost.c	
+		ft_sort_three.c		
 
 OBJS	= $(SRCS:.c=.o)
 

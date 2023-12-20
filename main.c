@@ -6,14 +6,14 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:53:11 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/19 19:07:39 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:29:54 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 #include "Libft/libft.h"
 // https://www.youtube.com/watch?v=wRvipSG4Mmk
-void	ft_print_stack(t_Node *a)
+void	ft_free_stack(t_Node *a)
 {
 	t_Node	*tmp;
 
@@ -75,23 +75,44 @@ t_Node	*ft_fill_a(t_Node *a, int argc, char **argv)
 	return (a);
 }
 
-int main(void)
+bool	ft_check_back(t_Node *a)
+{
+	t_Node	*tmp;
+
+	tmp = a;
+	while (tmp->next)
+		tmp = tmp->next;
+	if ((tmp->rank) < (a->rank))
+		return (true);
+	return (false);
+}
+
+int main(int argc, char **argv)
 {
 	t_Node  *a;
-	char *argv[3] = {"a.out","45 25 450 250 47 321 4257 41 4587 4 5 8 97 1 4521 35 78945 32164 848"};
-	int		argc;
+	// char *argv[3] = {"a.out","15 34 38 17 28 41 10 20 2 23 42 3 35 21 6 25 1 31 13 8 22 5 33 32 11 16 24 4 27 44 30 7 26 12 29 45 37 39 43 18 14 9 19 40 36"};
+	// int		argc;
+	t_Node  *b;
 	int		size;
 
-	argc = 2;
+	// argc = 2;
 	size = 0;
 	a = NULL;
+	b = NULL;
 	ft_error(argc, argv);
 	ft_check(argc, argv);
 	a = ft_fill_a(a, argc, argv);
 	size = ft_check_same(&a, size);
 	if (a_is_sorted(a))
 		return (0);
-	ft_sort(&a, size);
-	ft_print_stack(a);
+	if (5 >= ft_find_rank(&a))
+		ft_sort_five(&a, &b, size);
+	else 
+		ft_sort(&a, &b, size);
+	if (a_is_sorted(a))
+		ft_printf("OK");
+	else 
+		ft_printf("KO");
+	ft_free_stack(a);
 	return (0);
 }
