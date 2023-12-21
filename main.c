@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:53:11 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/20 19:29:54 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/21 14:24:58 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ bool	ft_check_back(t_Node *a)
 	return (false);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
 	t_Node  *a;
-	// char *argv[3] = {"a.out","15 34 38 17 28 41 10 20 2 23 42 3 35 21 6 25 1 31 13 8 22 5 33 32 11 16 24 4 27 44 30 7 26 12 29 45 37 39 43 18 14 9 19 40 36"};
-	// int		argc;
+	char *argv[3] = {"a.out"," 4 5 10 1 6 3 2 9 7 8 "};
+	 int		argc;
 	t_Node  *b;
 	int		size;
 
-	// argc = 2;
+	argc = 2;
 	size = 0;
 	a = NULL;
 	b = NULL;

@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/20 19:40:40 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/21 14:38:41 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,18 @@ void	ft_fill_b(t_Node **a, t_Node **b, int max_rank)
 	max_rank = max_rank / diviseur;
 	while ((*a)->next->next->next->next->next)
 	{
-		if (actual != 1)
-			max_rank = max_rank + div_max;
+		if (actual != 0)
+			max_rank = max_rank + max_rank;
 		while (actual < max_rank && (*a)->next->next->next->next->next)
 		{
-			if ((*a)->rank <= max_rank && ((*a)->nbr) < (div_max * diviseur))
+			if ((*a)->rank <= max_rank + div_max && ((((*a)->rank) < (div_max * diviseur))
+				|| ((*a)->rank < (find_max_rank_a(*a)))))
 			{
-				actual++;
 				pb(b, a);
+				if ((*b)->rank <= max_rank)
+					actual++;
+				while ((*b)->next && (*b)->rank < max_rank + div_max && (*b)->rank < (*b)->next->rank)
+					rb(b, 1);
 			}
 			ra(a, 1);
 		}
@@ -84,6 +88,10 @@ void	ft_sort(t_Node **a, t_Node **b, int max_rank)
 	while (*b)
 	{
 		ft_final_sort(a, b);
+		if (ft_lstlast(*b)->rank > (*b)->rank)
+		 	rrb(b, 1);
+		while ((*a)->rank < (*b)->rank)
+			ra(a, 1);
 		pa(a, b);
 		 //if (ft_check_back(*a))
 		 	//ra(a, 1);
