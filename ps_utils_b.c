@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:41:18 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/21 13:47:54 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:41:13 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,12 @@ int		ft_find_div(int max)
 {
 	int i;
 
-	i = max / 20;
-	if (max == 500)
-		return (12);
-	if (i == 0)
-		return (5);
+	 i = max / 10;
+	 if (max == 500)
+	 	i = 10;
+	 if (i != 0 && max < 100)
+		i = max / 5;
+	 if (i == 0 || max % 2 != 0)
+		i = 5;
 	return (i);
 }
