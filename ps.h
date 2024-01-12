@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:41:54 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/01/11 17:30:48 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:45:31 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct stock
 }	t_stock;
 
 int		find_max_rank(t_Node *a);
+void	ft_split_check(char *argv, int i);
 void	ft_free_stack(t_Node *a);
 void	sort_extention2(t_Node **a, t_Node **b, int min, int exec);
 void	sort_extention1(t_Node **a, t_Node **b, t_m *var);

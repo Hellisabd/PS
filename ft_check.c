@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:40:27 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/01/12 14:56:36 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:45:02 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,22 @@ void	ft_final_sort(t_Node **a, t_Node **b)
 
 void	ft_check(int argc, char **argv)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*tmp;
 
 	j = 1;
 	i = 0;
 	while (argc > j)
 	{
 		i = 0;
-		while (argv[j][i] != '\0')
-		{
-			while (argv[j][i] == ' ')
-				i++;
-			if (argv[j][i] == '-')
-				i++;
-			if ((argv[j][i] == '\0' && argv[j][i - 1] == '-')
-				|| argv[j][i] == '\0')
-				exit((write(2, "Error\n", 6), EXIT_FAILURE));
-			while (1 == ft_isdigit(argv[j][i]))
-				i++;
-			if (argv[j][i] != ' ' && argv[j][i] != '\0'
-			&& argv[j][i + 1] != ' ')
-				exit((write(2, "Error\n", 6), EXIT_FAILURE));
-		}
+		tmp = ft_strtrim(argv[j], " ");
+		if (tmp[i] == '\0')
+			exit((write(2, "Error\n", 6), EXIT_FAILURE));
+		ft_split_check(tmp, i);
 		j++;
+		if (tmp)
+			free(tmp);
 	}
 }
 

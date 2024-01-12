@@ -32,7 +32,7 @@ OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
 
 CC	= @gcc
 
-CFLAGS	+= -Wall -Wextra -Werror -g3
+CFLAGS	+= -Wall -Wextra -Werror -g3 -fsanitize=address
 
 RM	= @rm -rf
 
