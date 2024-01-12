@@ -6,16 +6,16 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:27:58 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/13 14:56:55 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/11 09:19:06 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+ssize_t	ft_atoi(const char *nptr)
 {
 	int		sign;
-	size_t	res;
+	ssize_t	res;
 	size_t	i;
 
 	sign = 1;
@@ -35,5 +35,5 @@ int	ft_atoi(const char *nptr)
 		res += nptr[i] - '0';
 		i++;
 	}
-	return ((int)sign * res);
+	return (sign * res);
 }

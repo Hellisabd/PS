@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:40:27 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/20 16:54:15 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:56:36 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,16 @@ int	ft_find_best_rank(t_Node **a, t_Node **b)
 	}
 	return (best_rank);
 }
+
 void	ft_final_sort(t_Node **a, t_Node **b)
 {
 	int		best_rank;
 
 	if (!(*b) || !b)
 		return ;
+	while (ft_lstlast(*b)->rank > (*b)->rank
+		&& ft_lstlast(*b)->rank < (*a)->rank)
+		rrb(b, 1);
 	best_rank = ft_find_best_rank(a, b);
 	while ((*a)->rank != best_rank && *b)
 	{
@@ -43,23 +47,30 @@ void	ft_final_sort(t_Node **a, t_Node **b)
 	}
 }
 
-void    ft_check(int argc, char **argv)
+void	ft_check(int argc, char **argv)
 {
-	int i;
+	int	i;
 	int	j;
 
 	j = 1;
+	i = 0;
 	while (argc > j)
 	{
 		i = 0;
 		while (argv[j][i] != '\0')
 		{
-			if (0 == ft_isdigit(argv[j][i]) && (argv[j][i] != ' ' && argv[j][i] != '-'))
-			{
-				ft_printf("found \"%c\" Error\n", argv[j][i]);
-				exit(EXIT_FAILURE);
-			}
-			i++;
+			while (argv[j][i] == ' ')
+				i++;
+			if (argv[j][i] == '-')
+				i++;
+			if ((argv[j][i] == '\0' && argv[j][i - 1] == '-')
+				|| argv[j][i] == '\0')
+				exit((write(2, "Error\n", 6), EXIT_FAILURE));
+			while (1 == ft_isdigit(argv[j][i]))
+				i++;
+			if (argv[j][i] != ' ' && argv[j][i] != '\0'
+			&& argv[j][i + 1] != ' ')
+				exit((write(2, "Error\n", 6), EXIT_FAILURE));
 		}
 		j++;
 	}
@@ -69,7 +80,7 @@ int	ft_check_same(t_Node **a, int size)
 {
 	t_Node	*tmp;
 	t_Node	*cmp;
-	
+
 	cmp = (*a);
 	size = 0;
 	while (cmp)
@@ -79,7 +90,8 @@ int	ft_check_same(t_Node **a, int size)
 		{
 			if (tmp->nbr == cmp->nbr)
 			{
-				ft_printf("Error : found 2 times %d", cmp->nbr);
+				write(2, "Error\n", 6);
+				ft_free_stack(*a);
 				exit (EXIT_FAILURE);
 			}
 			tmp = tmp->next;
@@ -92,7 +104,7 @@ int	ft_check_same(t_Node **a, int size)
 
 bool	find_r_or_rr(t_Node **a, int best_rank)
 {
-	int 	cost;
+	int		cost;
 	t_Node	*tmp;
 
 	cost = 0;

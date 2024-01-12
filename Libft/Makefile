@@ -50,7 +50,8 @@ SRCS		=	ft_isalpha.c	\
 			ft_lstclear.c		\
 			ft_lstiter.c		\
 			ft_lstmap.c		\
-			ft_free_double_tab.c 
+			ft_free_double_tab.c \
+			get_next_line.c 
 
 
 

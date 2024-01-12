@@ -6,16 +6,16 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:13:30 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/20 18:23:14 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:02:32 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int find_max_rank_a(t_Node *a)
+int	find_max_rank_a(t_Node *a)
 {
-	int max_rank;
-	
+	int	max_rank;
+
 	max_rank = 0;
 	while (a)
 	{
@@ -28,7 +28,7 @@ int find_max_rank_a(t_Node *a)
 
 bool	a_is_sorted(t_Node *a)
 {
-	while (a->next)
+	while (a && a->next)
 	{
 		if ((a->nbr) > (a->next->nbr))
 			return (false);
@@ -48,20 +48,22 @@ void	ft_find_rank_to_p(t_Node **a)
 
 void	ft_sort_five(t_Node **a, t_Node **b, int size)
 {
+	if (size == 2 && !(a_is_sorted(*a)))
+		sa(a, 1);
 	if (5 == size)
 	{
 		ft_find_rank_to_p(a);
-		pb(b, a);
+		pb(b, a, 1);
 		size--;
 	}
 	if (size == 4)
 	{
 		ft_find_rank_to_p(a);
-		pb(b, a);
+		pb(b, a, 1);
 	}
 	ft_sort_three(a);
-	pa(a, b);
-	pa(a, b);
+	pa(a, b, 1);
+	pa(a, b, 1);
 	size = find_min(*a);
 	while ((*a)->rank != size)
 	{
@@ -80,7 +82,8 @@ t_Node	**ft_sort_three(t_Node **a)
 			ra(a, 1);
 		if ((*a)->nbr > (*a)->next->nbr && (*a)->nbr < (*a)->next->next->nbr)
 			sa(a, 1);
-		if ((*a)->nbr < (*a)->next->nbr && (*a)->next->nbr > (*a)->next->next->nbr)
+		if ((*a)->nbr < (*a)->next->nbr
+			&& (*a)->next->nbr > (*a)->next->next->nbr)
 			rra(a, 1);
 	}
 	return (a);

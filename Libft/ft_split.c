@@ -6,13 +6,13 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/11/16 15:39:34 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:57:59 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	count_words(char const *s, char c)
+size_t	count_words(char *s, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -33,7 +33,7 @@ size_t	count_words(char const *s, char c)
 	return (i);
 }
 
-char	*fill_dest(char const *s, t_m *var)
+char	*fill_dest(char *s, t_m *var)
 {
 	char	*dest;
 	int		i;
@@ -63,7 +63,7 @@ int	free_split(char **res, int j)
 	return (0);
 }
 
-static	int	ft_splitsplit(char const *s, char c, t_m *var, char **res)
+static	int	ft_splitsplit(char *s, char c, t_m *var, char **res)
 {
 	if (s[var->i] != c && var->h < 0)
 		var->h = var->i;
@@ -78,7 +78,7 @@ static	int	ft_splitsplit(char const *s, char c, t_m *var, char **res)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**res;
 	t_m		var;

@@ -6,17 +6,16 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:41:18 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/21 19:41:13 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:11:17 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-
-void    sb(t_Node **b, int boul)//ok
+void	sb(t_Node **b, int boul)
 {
 	t_Node	*tmp;
-	
+
 	tmp = *b;
 	if (*b && (*b)->next)
 	{
@@ -27,11 +26,12 @@ void    sb(t_Node **b, int boul)//ok
 	if (boul)
 		ft_printf("sb\n");
 }
-void    rb(t_Node **b, int boul) //ok
+
+void	rb(t_Node **b, int boul)
 {
 	t_Node	*tmp;
-	
-	if (b && (*b)->next && *b)
+
+	if (b && *b && (*b)->next)
 	{
 		tmp = *b;
 		*b = (*b)->next;
@@ -40,7 +40,8 @@ void    rb(t_Node **b, int boul) //ok
 			ft_printf("rb\n");
 	}
 }
-void    pb(t_Node **b, t_Node **a)
+
+void	pb(t_Node **b, t_Node **a, int boul)
 {
 	t_Node	*tmp;
 
@@ -49,15 +50,15 @@ void    pb(t_Node **b, t_Node **a)
 	tmp = *a;
 	*a = (*a)->next;
 	ft_lstadd_front(b, tmp);
-	ft_printf("pb\n");
+	if (boul == 1)
+		ft_printf("pb\n");
 }
 
-void    rrb(t_Node **b, int boul) //ok
+void	rrb(t_Node **b, int boul)
 {
 	t_Node	*current;
 	t_Node	*secondlast;
 	t_Node	*last;
-
 
 	current = *b;
 	if (b && *b && (*b)->next)
@@ -77,16 +78,20 @@ void    rrb(t_Node **b, int boul) //ok
 	}
 }
 
-int		ft_find_div(int max)
+int	ft_find_div(int max)
 {
-	int i;
+	int	i;
 
-	 i = max / 10;
-	 if (max == 500)
-	 	i = 10;
-	 if (i != 0 && max < 100)
+	i = max / 20;
+	if (max == 500)
+		i = 18;
+	if (max == 100)
+		i = 8;
+	if (i != 0 && max < 100)
 		i = max / 5;
-	 if (i == 0 || max % 2 != 0)
+	if (i == 0)
 		i = 5;
+	if (i == 0 && max < 10)
+		i = 4;
 	return (i);
 }

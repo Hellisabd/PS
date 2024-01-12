@@ -6,16 +6,16 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:41:18 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/20 18:26:27 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:05:01 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-void    sa(t_Node **a, int boul)//ok
+void	sa(t_Node **a, int boul)
 {
 	t_Node	*tmp;
-	
+
 	tmp = *a;
 	if (*a && (*a)->next)
 	{
@@ -27,10 +27,10 @@ void    sa(t_Node **a, int boul)//ok
 		ft_printf("sa\n");
 }
 
-void    ra(t_Node **a, int boul) //ok
+void	ra(t_Node **a, int boul)
 {
 	t_Node	*tmp;
-	
+
 	if (a && (*a)->next && *a)
 	{
 		tmp = *a;
@@ -41,7 +41,7 @@ void    ra(t_Node **a, int boul) //ok
 	}
 }
 
-void    pa(t_Node **a, t_Node **b) //ok
+void	pa(t_Node **a, t_Node **b, int boul)
 {
 	t_Node	*tmp;
 
@@ -50,15 +50,15 @@ void    pa(t_Node **a, t_Node **b) //ok
 	tmp = *b;
 	*b = (*b)->next;
 	ft_lstadd_front(a, tmp);
-	ft_printf("pa\n");
+	if (boul == 1)
+		ft_printf("pa\n");
 }
 
-void    rra(t_Node **a, int boul) //ok
+void	rra(t_Node **a, int boul)
 {
 	t_Node	*current;
 	t_Node	*secondlast;
 	t_Node	*last;
-
 
 	current = *a;
 	if (a && *a && (*a)->next)
@@ -76,4 +76,30 @@ void    rra(t_Node **a, int boul) //ok
 	}
 	if (boul)
 		ft_printf("rra\n");
+}
+
+int	ft_find_rank_prec(int to_find, t_Node *a)
+{
+	int	i;
+	int	j;
+	int	best_rank;
+
+	j = 0;
+	i = 0;
+	best_rank = 500;
+	if (!a)
+		return (0);
+	while (a->next)
+	{
+		if (a->rank >= to_find && a->rank < best_rank)
+		{
+			best_rank = a->rank;
+			i = j;
+		}
+		a = a->next;
+		j++;
+	}
+	if (i > j / 2)
+		return (i * -1);
+	return (i);
 }

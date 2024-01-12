@@ -3,39 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/11/03 11:42:55 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:33:49 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_split_join(char *line, char *buff, char *dest)
+{
+	int		i;
+	size_t	j;
+
+	i = -1;
+	j = 0;
+	if (line)
+		while (line[++i] != '\0')
+			dest[i] = line[i];
+	while (buff[j] != '\0')
+		dest[i++] = buff[j++];
+	dest[ft_strlen(line) + ft_strlen(buff)] = '\0';
+	return (dest);
+}
+
+char	*ft_strjoin(char *line, char *buff)
 {
 	char	*dest;
-	size_t	i;
-	size_t	a;
 
-	if (!s1 || !s2)
-		return (NULL);
-	dest = (char *)malloc(sizeof (char) * (ft_strlen(s2) + ft_strlen(s1) + 1));
-	if (!dest)
-		return (NULL);
-	i = 0;
-	a = 0;
-	while (s1[i] != '\0')
+	if (!line)
 	{
-		dest[i] = s1[i];
-		i++;
+		line = (char *)malloc(1 * sizeof(char));
+		if (!line)
+			return (NULL);
+		line[0] = '\0';
 	}
-	while (s2[a] != '\0')
-	{
-		dest[i] = s2[a];
-		i++;
-		a++;
-	}
-	dest [i] = '\0';
+	if (!buff)
+		return (free(line), NULL);
+	dest = malloc(sizeof(char) * ((ft_strlen(buff) + ft_strlen(line)) + 1));
+	if (dest == NULL)
+		return (free(line), NULL);
+	dest = ft_split_join(line, buff, dest);
+	free (line);
 	return (dest);
 }

@@ -6,18 +6,17 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:24:45 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/12/13 14:11:25 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:48:55 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-void	ft_error(int argc, char **argv)
+void	ft_error(int argc)
 {
-	// int	i;
-
-	// i = 0;
-	(void)argv;
-	if (argc < 2 )// || !(ft_isdigit(argv[argc][i])))
+	if (argc < 2)
+	{
+		write(2, "Error\n", 6);
 		exit (EXIT_FAILURE);
+	}
 }
